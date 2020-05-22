@@ -1,0 +1,1 @@
+The subscription tracker app helps keep track of your subscriptions and to stay on top of your financial game.

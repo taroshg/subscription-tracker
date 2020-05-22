@@ -1,0 +1,153 @@
+{% extends "layout.html" %}
+{% block main %}
+<!-- New subscription form -->
+<div class="modal fade" id="new" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="new">Add Subscription</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="/" method="post">
+                <div class="modal-body">
+                        <div class="form-group">
+                            <input autocomplete="off" autofocus class="form-control" name="subscription" placeholder="Subscription" type="text">
+                        </div>
+                        <div class="form-group">
+                            <select class="form-control" name="recurrence">
+                                <option value="1">Daily</option>
+                                <option value="7">Weekly</option>
+                                <option value="30" selected>Monthly</option>
+                                <option value="365">Yearly</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <input autocomplete="off" autofocus class="form-control" name="payment" step="0.01" placeholder="Payment" type="number">
+                        </div>
+                        <p>Next billing date</p>
+                        <div class="form-group">
+                            <select class="form-control" name="month" id="months_selector">
+                                <!-- js work -->
+                            </select>
+                            <select class="form-control" name="day" id="days_selector">
+                                <!-- js work -->
+                            </select>
+                            <select class="form-control" name="year" id="years_selector">
+                                <!-- js work -->
+                            </select>
+                            <!-- <input autocomplete="off" autofocus class="form-control next_payment_day"
+                            name="days" placeholder="Days until next renewal" min="0" type="number"> -->
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button class="btn btn-primary" type="submit">Add</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Account Settings -->
+<div class="account">
+    <button class="btn btn-secondary dropdown-toggle account-dropdown" 
+    type="button" id="dropdownMenuButton" data-toggle="dropdown" 
+    aria-haspopup="true" aria-expanded="false">
+      {{username}}
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <!-- <a class="dropdown-item" href="/?sort=renewal">Sort by billing date</a>
+        <a class="dropdown-item" href="/?sort=recurrance">Sort by recurrance</a>
+        <a class="dropdown-item" href="/?sort=payment">Sort by payment</a> -->
+        <a class="dropdown-item" href="/logout">Logout</a>
+    </div>
+</div>
+<div class="table-settings">
+    <button class="btn btn-secondary dropdown-toggle table-settings-dropdown" 
+    type="button" id="dropdownMenuButton" data-toggle="dropdown" 
+    aria-haspopup="true" aria-expanded="false">
+      Sort by
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" href="/">Sort by subscription</a>
+        <a class="dropdown-item" href="/?sort=renewal">Sort by billing date</a>
+        <a class="dropdown-item" href="/?sort=recurrence">Sort by occurrence</a>
+        <a class="dropdown-item" href="/?sort=payment">Sort by payment</a>
+    </div>
+</div>
+<div class="main-content">
+    <!-- Totals display -->
+    <div class="block-head">
+        <div class="total">
+            <select class="totals-selector" id="totals-selector">
+                <option value="0">Daily <i class="fas fa-sort-down arrow "></i></option>
+                <option value="1">Weekly</option>
+                <option value="2" selected>Monthly</option>
+                <option value="3">Yearly</option>
+            </select>
+            <div id="totals" class="number">
+                <div class="main-text" hidden>${{total["daily"]}}</div>
+                <div class="main-text" hidden>${{total["weekly"]}}</div>
+                <div class="main-text" hidden>${{total["monthly"]}}</div>
+                <div class="main-text" hidden>${{total["yearly"]}}</div>
+            </div>
+        </div>
+        <div class="add-button">
+            <button type="button" class="btn btn-primary new-subscription" data-toggle="modal" data-target="#new">
+                <i class="fas fa-plus"></i>
+            </button>
+        </div>
+    </div> 
+
+{% if empty == True %}
+    <br><center><b>No subscriptions added 🥺</b></center>
+{% endif %}
+
+    <!-- Table -->
+{% for subscription in subscriptions %}
+    <div class="block">
+        <div class="inner-block first-block">
+            <div class="renewal">
+                {% if 1 < subscription["days_left"] < 10 %}
+                    <p>In {{subscription["days_left"]}} days</p>
+                {% elif subscription["days_left"] == 1 %}
+                    <p>In {{subscription["days_left"]}} day</p>
+                {% elif subscription["days_left"] == 0 %}
+                    <p>Today</p>
+                {% else %}
+                    <p>{{subscription["month"]}} 
+                        {{subscription["day"]}}
+                        {{subscription["year"]}}
+                    </p>
+                {% endif %}
+            </div>
+            <div class="name">{{subscription["subscription"]}}</div>
+        </div>
+        <div class="inner-block payment-holder">
+            <div class="recurrence">
+                {% if subscription["recurrence"] == 1 %}
+                <p>Daily</p>
+                {% elif subscription["recurrence"] == 7 %}
+                <p>Weekly</p>
+                {% elif subscription["recurrence"] == 30 %}
+                <p>Monthly</p>
+                {% elif subscription["recurrence"] == 365 %}
+                <p>Yearly</p>
+                {% endif %}
+            </div>
+            <div class="payment number">${{subscription["payment"]}}</div>
+        </div>
+        <div class="inner-block delete">
+            <form action="/" method="post">
+                <button class="delete-button" value="{{subscription['subscription']}}"
+                name="remove">
+                    <i class="fas fa-trash-alt"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+{% endfor %}
+</div>
+{% endblock %}

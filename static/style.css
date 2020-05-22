@@ -1,0 +1,268 @@
+html, body
+{
+    background-color: #1f1f1f;
+    font-family: 'Karla', sans-serif;
+    font-size: 18px;
+    color: white;
+}
+
+.flash-message
+{
+    margin: 0;
+    text-align: center;
+}
+
+.alert-danger
+{
+    background-color: #e65e4f;
+    color: darkred;
+    font-weight: bold;
+    border: none;
+}
+
+.alert-danger span
+{
+    color: black;
+    border: none;
+    text-shadow: none;
+}
+
+.login-form, .register-form
+{
+    width: 300px;
+    height: auto;
+    margin-top: 22%;
+}
+
+.register-form
+{
+    margin-top: 20%;
+}
+
+.login-button, .register-button
+{
+    width: 300px;
+}
+
+.main-content
+{
+    padding-top: 0px;
+}
+
+.modal-body, .modal-header, .modal-footer, .modal-content
+{
+    background-color: #1f1f1f;
+    border: none;
+    color: lightgray;
+}
+
+#months_selector, #days_selector, #years_selector
+{
+    display: inline;
+    max-width: 32%;
+}
+
+.modal-header .close
+{
+    color: white;
+}
+
+.account
+{
+    float: right;
+    padding: 10px;
+}
+
+.block-head
+{
+    width: 50%;
+    text-align: left;
+    padding: 20px 0px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: auto 40%;
+}
+
+.block-head .total
+{
+    margin-top: 4%;
+}
+
+.block-head .main-text
+{
+    font-size: 2rem;
+    font-weight: 300;
+    padding: 0;
+}
+
+.number
+{
+    font-family: 'Work Sans', sans-serif;
+}
+
+.dropdown-toggle
+{
+    background-color: #343a40;
+    border: none;
+}
+
+.dropdown-menu
+{
+    background-color: #343a40;
+}
+
+.dropdown-menu a
+{
+    color: white;
+}
+
+.dropdown-menu a:hover
+{
+    background-color: #545b62;
+    color: white;
+}
+
+.table-settings
+{
+    padding: 10px;
+}
+
+.block-head .totals-selector
+{
+    font-size: 1rem;
+    background-color: transparent;
+    border: none;
+    color: gray;
+    min-width: 125px;
+    outline:none;
+    padding-left: 0;  
+    margin-left: -5px;
+}
+
+.block-head .add-button
+{
+    margin: 14% 0 0 80%;
+}
+
+.block-head .new-subscription
+{
+    min-width: 50px;
+    height: 50px;
+}
+
+.block
+{
+    width: 50%;
+    border-radius: 8px;
+    margin: auto;
+    margin-bottom: 20px;
+    background-color: #343a40;
+    display: grid;
+    grid-template-columns: auto 1% 0%;
+    padding: 20px;
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+
+}
+
+.block .first-block
+{
+    margin: 0;
+    padding-left: 10px;
+}
+
+.block .name
+{
+    font-weight: bold;
+    font-size: 1.15rem;
+}
+
+.block .renewal p
+{
+    margin: 0;
+    color: darkgray;
+}
+
+.block .payment-holder
+{
+    padding-top: 10px;
+    max-width: 10%;
+}
+
+.block .payment
+{
+    font-weight: 500;
+    float: right;
+}
+
+.block .recurrence p
+{
+    margin: 0;
+    color: darkgray;
+    font-size: 0.8rem;
+    float: right;
+}
+
+.block .delete
+{
+    margin: 20px -50px;
+    float: right;
+    text-align: right;
+}
+
+.form-info-bottom
+{
+    margin-top: 10px;
+}
+
+form a
+{
+    color: lightskyblue;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+form a:hover
+{
+    color: lightskyblue;
+    text-decoration: none;
+    transition: 0.2s;
+    opacity: 0.5;
+}
+
+.table thead a
+{
+    text-decoration: none;
+    color: white;
+    transition: 0.2s;
+}
+
+.table thead a:hover
+{
+    text-decoration: none;
+    color: white;
+    opacity: 0.5;
+    transition: 0.2s;
+}
+
+.info-row
+{
+    border-top: 2px rgba(0, 0, 0, 0) solid;
+}
+
+.delete-button
+{
+    color: #d74130;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0.2s;
+} 
+.delete-button:hover
+{
+    opacity: 0.5;
+    transition: 0.2s;
+}   
